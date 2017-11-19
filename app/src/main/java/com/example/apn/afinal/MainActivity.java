@@ -1,5 +1,6 @@
 package com.example.apn.afinal;
 
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -152,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
            @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("tags", tags);
+                params.put("userid", tags);
                 return params;
             }
 
@@ -169,6 +171,14 @@ public class MainActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
+private Bitmap stringToImage(String b64str){
+    byte[] decodedString = Base64.decode(b64str, Base64.DEFAULT);
+    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    return decodedByte;
+}
+
+
+
 }
 
 
